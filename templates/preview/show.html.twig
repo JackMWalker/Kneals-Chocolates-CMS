@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('preview_index') }}">Preview</a>
+        </li>
+        <li class="breadcrumb-item active">Show</li>
+    </ol>
+    <div id="row">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Preview</h3>
+                <a href="{{ path('preview_delete', {'id': preview.id }) }}"
+                   onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" role="button">
+                    Delete
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label class="form-control-label required" for="preview_name">Name</label>
+                    <input type="text" id="preview_name" name="preview[name]" required="required" readonly="readonly" class="form-control" value="{{ preview.name }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label required" for="preview_description">Description</label>
+                    <input type="text" id="preview_description" name="preview[description]" required="required" readonly="readonly" class="form-control" value="{{ preview.description }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label required" for="preview_image">Image</label>
+                    <img src="{{ asset("/uploads/previews/" ~ preview.imageName) }}" width="200" id="preview_image" class="d-block">
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label required" for="preview_allergies">Allergies</label>
+                    <ul class="row">
+                        {% for allergy in preview.allergies %}
+                        <li class="col-4 text-center">{{ allergy.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <a role="button" href="{{ path('preview_edit', {'id': preview.id }) }}" class="btn btn-success">Edit</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

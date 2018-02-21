@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('product_index') }}">Product</a>
+        </li>
+        <li class="breadcrumb-item active">Add</li>
+    </ol>
+    <div id="row">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header"><h3>Add Product</h3></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.cost) }}
+                {{ form_row(form.weight) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.isLive) }}
+                {{ form_row(form.postagePrice) }}
+                {{ form_row(form.postageCost) }}
+                {{ form_row(form.stock) }}
+                {{ form_row(form.allergies) }}
+                {{ form_row(form.selection) }}
+                {{ form_row(form.dynamicSelection) }}
+                {{ form_row(form.dynamicSelectionNumber) }}
+                <fieldset class="form-group">
+                    <legend class="col-form-legend">Images</legend>
+                    <ul class="" id="product_image" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                        {% for image in form.images %}
+                            <li>{{ form_row(image.image) }}</li>
+                        {% endfor %}
+                    </ul>
+                </fieldset>
+                {{ form_row(form.submit) }}
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

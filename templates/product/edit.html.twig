@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('product_index') }}">Product</a>
+        </li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
+    <div id="row">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Edit Product</h3>
+                <a href="{{ path('product_delete', {'id':product.id}) }}"
+                   onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" role="button">
+                    Delete
+                </a>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.price) }}
+                {{ form_row(form.cost) }}
+                {{ form_row(form.weight) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.isLive) }}
+                {{ form_row(form.postagePrice) }}
+                {{ form_row(form.postageCost) }}
+                {{ form_row(form.stock) }}
+                {{ form_row(form.allergies) }}
+                {{ form_row(form.selection) }}
+                {{ form_row(form.dynamicSelection) }}
+                {{ form_row(form.dynamicSelectionNumber) }}
+
+                <fieldset class="form-group">
+                    <legend class="col-form-legend">Images</legend>
+                    <ul class="" id="product_image" data-prototype="{{ form_widget(form.images.vars.prototype)|e('html_attr') }}">
+                        {% for image in product.images %}
+                            <li><input type="hidden" id="product_images_{{ loop.index0 }}_imageName"
+                                       name="product[images][{{ loop.index0 }}][imageName]"
+                                       value="{{ image.imageName }}">
+                                {{ image.imageName }}</li>
+                        {% endfor %}
+                    </ul>
+                </fieldset>
+
+                {{ form_row(form.submit) }}
+                {{ form_end(form, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

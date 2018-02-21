@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('preview_index') }}">Preview</a>
+        </li>
+        <li class="breadcrumb-item active">Edit</li>
+    </ol>
+    <div id="row">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h3 class="mb-0">Edit Preview</h3>
+                <a href="{{ path('preview_delete', {'id':preview.id}) }}"
+                   onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger" role="button">
+                    Delete
+                </a>
+            </div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                <div class="form-group">
+                    <label class="form-control-label required" for="preview_imageName">Current Image</label>
+                    <img src="{{ asset("/uploads/previews/" ~ preview.imageName) }}" width="200" id="preview_imageName" class="d-block">
+                </div>
+                {{ form_row(form.image) }}
+                {{ form_row(form.allergies) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

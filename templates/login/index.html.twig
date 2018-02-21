@@ -1,0 +1,39 @@
+{% extends 'login_base.html.twig' %}
+
+{% block body %}
+    <div id="row">
+        {% if errors %}
+            <div class="alert alert-danger">
+                {{ errors.messageKey }}
+            </div>
+        {% endif %}
+        <!-- Example DataTables Card-->
+        <div class="col-6 mx-auto">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i> Login</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <form action="{{ path('login') }}" method="post">
+                            <div class="form-group">
+                                <label for="username">Email</label>
+                                <input type="text" id="username" name="_username" class="form-control" value="{{ username }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="_password" class="form-control">
+                            </div>
+
+                            <button class="btn btn-info">Login</button>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="card-footer small text-muted"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

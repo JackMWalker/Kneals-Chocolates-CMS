@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+        {% endblock %}
+
+    </head>
+    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            {% for message in app.flashes('success') %}
+            <div class="alert alert-success" role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+
+            {% block body %}{% endblock %}
+
+        </div>
+        <!-- /.container-fluid-->
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+            <div class="container">
+                <div class="text-center">
+                    <small>Created with love by Jacky Boy!</small>
+                </div>
+            </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        {% block javascripts %}
+        <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+                    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                    crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script defer src="{{ asset('js/fontawesome-all.min.js') }}"></script>
+
+        <script src="{{ asset('js/sb-admin.min.js') }}"></script>
+        <script src="{{ asset('js/main.js') }}"></script>
+        <!-- Toggle between fixed and static navbar-->
+        <script>
+            $('#toggleNavPosition').click(function() {
+                $('body').toggleClass('fixed-nav');
+                $('nav').toggleClass('fixed-top static-top');
+            });
+
+        </script>
+        <!-- Toggle between dark and light navbar-->
+        <script>
+            $('#toggleNavColor').click(function() {
+                $('nav').toggleClass('navbar-dark navbar-light');
+                $('nav').toggleClass('bg-dark bg-light');
+                $('body').toggleClass('bg-dark bg-light');
+            });
+
+        </script>
+        {% endblock %}
+    </body>
+</html>

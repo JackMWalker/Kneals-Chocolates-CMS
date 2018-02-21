@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ path('preview_index') }}">Preview</a>
+        </li>
+        <li class="breadcrumb-item active">Add</li>
+    </ol>
+    <div id="row">
+        <div class="card card-register mx-auto mt-5">
+            <div class="card-header"><h3>Add Preview</h3></div>
+            <div class="card-body">
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.image) }}
+                {{ form_row(form.allergies) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
