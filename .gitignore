@@ -1,6 +1,7 @@
 
 ###> symfony/framework-bundle ###
 .env
+ssh.txt
 /public/bundles/
 /public/uploads/previews/*
 /public/uploads/products/*
