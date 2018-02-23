@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -43,7 +44,7 @@ class ProductType extends AbstractType
                 'currency' => 'GBP'
             ))
             ->add('weight', IntegerType::class)
-            ->add('description', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('isLive', CheckboxType::class, array(
                 'required' => false
             ))
@@ -66,6 +67,9 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
+            ))
+            ->add('containsAlcohol', CheckboxType::class, array(
+                'required' => false
             ))
             ->add('images', CollectionType::class, array(
                 'entry_type' => ProductImageType::class,

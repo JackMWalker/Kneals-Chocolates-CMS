@@ -32,12 +32,16 @@ class PreviewItem
     private $description;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $containsAlcohol;
+
+    /**
      * @ORM\Column(type="string")
      *
      * @Assert\File(mimeTypes={"image/jpeg", "image/png"})
      */
     private $image;
-
 
     /**
      * @return mixed
@@ -123,6 +127,24 @@ class PreviewItem
     {
         $this->imageName = $imageName;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getContainsAlcohol()
+    {
+        return $this->containsAlcohol;
+    }
+
+    /**
+     * @param mixed $containsAlcohol
+     */
+    public function setContainsAlcohol($containsAlcohol): void
+    {
+        $this->containsAlcohol = $containsAlcohol;
+    }
+
+
 
 
     /**

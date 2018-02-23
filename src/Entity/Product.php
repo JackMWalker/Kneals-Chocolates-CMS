@@ -74,41 +74,9 @@ class Product
     private $dynamicSelection;
 
     /**
-     * @return mixed
+     * @ORM\Column(type="boolean")
      */
-    public function getDynamicSelection()
-    {
-        return $this->dynamicSelection;
-    }
-
-    /**
-     * @param mixed $dynamicSelection
-     */
-    public function setDynamicSelection($dynamicSelection)
-    {
-        $this->dynamicSelection = $dynamicSelection;
-    }
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $dynamicSelectionNumber = null;
-
-    /**
-     * @return mixed
-     */
-    public function getDynamicSelectionNumber()
-    {
-        return $this->dynamicSelectionNumber;
-    }
-
-    /**
-     * @param mixed $dynamicSelectionNumber
-     */
-    public function setDynamicSelectionNumber($dynamicSelectionNumber)
-    {
-        $this->dynamicSelectionNumber = $dynamicSelectionNumber;
-    }
+    private $containsAlcohol;
 
     /**
      * @ORM\Column(type="datetime", nullable=false)
@@ -278,6 +246,59 @@ class Product
     public function setStock($stock)
     {
         $this->stock = $stock;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDynamicSelection()
+    {
+        return $this->dynamicSelection;
+    }
+
+    /**
+     * @param mixed $dynamicSelection
+     */
+    public function setDynamicSelection($dynamicSelection)
+    {
+        $this->dynamicSelection = $dynamicSelection;
+    }
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $dynamicSelectionNumber = null;
+
+    /**
+     * @return mixed
+     */
+    public function getDynamicSelectionNumber()
+    {
+        return $this->dynamicSelectionNumber;
+    }
+
+    /**
+     * @param mixed $dynamicSelectionNumber
+     */
+    public function setDynamicSelectionNumber($dynamicSelectionNumber)
+    {
+        $this->dynamicSelectionNumber = $dynamicSelectionNumber;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getContainsAlcohol()
+    {
+        return $this->containsAlcohol;
+    }
+
+    /**
+     * @param mixed $containsAlcohol
+     */
+    public function setContainsAlcohol($containsAlcohol): void
+    {
+        $this->containsAlcohol = $containsAlcohol;
     }
 
     /**

@@ -79,6 +79,13 @@
                         </ul>
                     </div>
                 </fieldset>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" id="product_containsAlcohol" name="product[containsAlcohol]" class="form-check-input" disabled {{ (product.containsAlcohol) ? 'checked' : '' }}> Contains Alcohol
+                        </label>
+                    </div>
+                </div>
                 <fieldset class="form-group">
                     <legend class="col-form-legend">Selection</legend>
                     <div id="product_selection">

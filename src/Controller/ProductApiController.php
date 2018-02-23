@@ -32,7 +32,17 @@ class ProductApiController extends FOSRestController
     {
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
 
-        return View::create($products, Response::HTTP_OK);
+        $map = function($p) {
+            $p->setPrice(number_format($p->getPrice(), 2, '.', ','));
+            $p->setCost(number_format($p->getCost(), 2, '.', ','));
+            $p->setPostagePrice(number_format($p->getPostagePrice(), 2, '.', ','));
+            $p->setPostageCost(number_format($p->getPostageCost(), 2, '.', ','));
+            return $p;
+        };
+
+        $filteredArray = array_map($map, $products);
+
+        return View::create($filteredArray, Response::HTTP_OK);
     }
 
 }

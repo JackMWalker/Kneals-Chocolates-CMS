@@ -38,6 +38,13 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="checkbox" id="preview_containsAlcohol" name="preview[containsAlcohol]" class="form-check-input" disabled {{ (preview.containsAlcohol) ? 'checked' : '' }}> Contains Alcohol
+                        </label>
+                    </div>
+                </div>
 
                 <a role="button" href="{{ path('preview_edit', {'id': preview.id }) }}" class="btn btn-success">Edit</a>
             </div>

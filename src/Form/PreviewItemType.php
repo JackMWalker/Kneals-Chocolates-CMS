@@ -6,7 +6,9 @@ use App\Entity\Allergy;
 use App\Entity\PreviewItem;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -29,7 +31,7 @@ class PreviewItemType extends AbstractType
                     new NotBlank()
                 )
             ))
-            ->add('description', TextType::class)
+            ->add('description', TextareaType::class)
             ->add('image', FileType::class, array(
                 'label' => 'Image (jpg or png)',
                 'required' => false
@@ -39,6 +41,9 @@ class PreviewItemType extends AbstractType
                 'choice_label' => 'name',
                 'multiple' => true,
                 'expanded' => true
+            ))
+            ->add('containsAlcohol', CheckboxType::class, array(
+                'required' => false
             ))
         ;
 

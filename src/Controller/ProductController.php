@@ -52,6 +52,10 @@ class ProductController extends Controller
         if($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            if(!$product->getDynamicSelectionNumber()) {
+                $product->setDynamicSelectionNumber(0);
+            }
+
             $em->persist($product);
             $em->flush();
 
