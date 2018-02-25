@@ -45,4 +45,24 @@ class ProductApiController extends FOSRestController
         return View::create($filteredArray, Response::HTTP_OK);
     }
 
+    /**
+     * Get products
+     * @Rest\Get("/products/{userId}")
+     */
+    public function getProduct($userId)
+    {
+        $product = $this->getDoctrine()->getRepository(Product::class)->findOneBy(array('id' => $userId));
+
+        if(!$product) {
+            return View::create(null, Response::HTTP_NOT_FOUND);
+        }
+
+        $product->setPrice(number_format($product->getPrice(), 2, '.', ','));
+        $product->setCost(number_format($product->getCost(), 2, '.', ','));
+        $product->setPostagePrice(number_format($product->getPostagePrice(), 2, '.', ','));
+        $product->setPostageCost(number_format($product->getPostageCost(), 2, '.', ','));
+
+        return View::create($product, Response::HTTP_OK);
+    }
+
 }
