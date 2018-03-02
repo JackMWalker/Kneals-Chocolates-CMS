@@ -55,8 +55,10 @@ class BasketItemApiController extends FOSRestController
 
         $count = 0;
 
-        foreach($basketItems as $item) {
-            $count += $item->getQuantity();
+        if(sizeof($basketItems) > 0) {
+            foreach($basketItems as $item) {
+                $count += $item->getQuantity();
+            }
         }
 
         return View::create([
