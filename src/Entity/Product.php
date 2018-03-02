@@ -485,6 +485,20 @@ class Product
     }
 
     /**
+     * If this product has a particular preview item in it's selection
+     * @param $previewItem
+     * @return bool
+     */
+    public function hasPreviewItem($previewItem)
+    {
+        if($this->selection) {
+            return $this->selection->getPreviewItems()->contains($previewItem);
+        } else {
+            return false;
+        }
+    }
+
+    /**
      *
      * @ORM\PrePersist
      * @ORM\PreUpdate

@@ -163,6 +163,7 @@ class PreviewItem
     public function __construct()
     {
         $this->allergies = new ArrayCollection();
+        $this->selections = new ArrayCollection();
     }
 
     /**
@@ -191,6 +192,43 @@ class PreviewItem
     public function removeAllergy(Allergy $allergy)
     {
         $this->allergies->removeElement($allergy);
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\BasketItemSelections", mappedBy="previewItem", cascade={"persist"})
+     */
+    private $selections;
+
+
+    /**
+     * @param BasketItemSelections $basketItemSelection
+     */
+    public function addSelection(BasketItemSelections $basketItemSelection)
+    {
+        if ($this->selections->contains($basketItemSelection)) {
+            return;
+        }
+
+        $this->selections[] = $basketItemSelection;
+        // set the *owning* side!
+        $basketItemSelection->setBasketItem($this);
+    }
+
+    /**
+     * @param BasketItemSelections $basketItemSelection
+     */
+    public function removeSelection(BasketItemSelections $basketItemSelection)
+    {
+        $this->selections->removeElement($basketItemSelection);
+        // set the owning side to null
+        $basketItemSelection->setBasketItem(null);
+    }
+    /**
+     * @return mixed
+     */
+    public function getSelections()
+    {
+        return $this->selections;
     }
 
 }

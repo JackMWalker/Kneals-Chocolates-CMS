@@ -42,19 +42,27 @@ class ProductApiController extends FOSRestController
 
         $filteredArray = array_map($map, $products);
 
-        return View::create($filteredArray, Response::HTTP_OK);
+        return View::create([
+            'code' => Response::HTTP_OK,
+            'message' => 'success',
+            'data' => $filteredArray
+        ], Response::HTTP_OK);
     }
 
     /**
-     * Get products
-     * @Rest\Get("/products/{userId}")
+     * Get product
+     * @Rest\Get("/products/{productId}")
      */
-    public function getProduct($userId)
+    public function getProduct($productId)
     {
-        $product = $this->getDoctrine()->getRepository(Product::class)->findOneBy(array('id' => $userId));
+        $product = $this->getDoctrine()->getRepository(Product::class)->findOneBy(array('id' => $productId));
 
         if(!$product) {
-            return View::create(null, Response::HTTP_NOT_FOUND);
+            return View::create([
+                'code' => Response::HTTP_NOT_FOUND,
+                'message' => 'Not found',
+                'error' => 'A product with this ID does not exist'
+            ], Response::HTTP_NOT_FOUND);
         }
 
         $product->setPrice(number_format($product->getPrice(), 2, '.', ','));
@@ -62,7 +70,11 @@ class ProductApiController extends FOSRestController
         $product->setPostagePrice(number_format($product->getPostagePrice(), 2, '.', ','));
         $product->setPostageCost(number_format($product->getPostageCost(), 2, '.', ','));
 
-        return View::create($product, Response::HTTP_OK);
+        return View::create([
+            'code' => Response::HTTP_OK,
+            'message' => 'success',
+            'data' => $product
+        ], Response::HTTP_OK);
     }
 
 }
